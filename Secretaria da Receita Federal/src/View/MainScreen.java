@@ -20,8 +20,9 @@ public class MainScreen extends javax.swing.JFrame {
         jInputTextArea.setBorder(new NumberedBorder());
         controller = new MainScreenController();
         
+        //TEST MODE
         reader = new TextReader();
-        jInputTextArea.setText(reader.getFileContent("test/Example 01.txt"));
+        jInputTextArea.setText(reader.getFileContent("test/Example 02.txt"));
     }
 
     /**
