@@ -21,7 +21,7 @@ public class MainScreen extends javax.swing.JFrame {
         controller = new MainScreenController();
         
         reader = new TextReader();
-        jInputTextArea.setText(reader.getFileContent("Test/Example 01.txt"));
+        jInputTextArea.setText(reader.getFileContent("test/Example 01.txt"));
     }
 
     /**
