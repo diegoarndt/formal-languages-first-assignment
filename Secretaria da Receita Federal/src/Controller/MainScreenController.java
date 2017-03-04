@@ -1,11 +1,11 @@
 package Controller;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class MainScreenController {
     
     private IDataValidator validator = new DataValidatorFromFile();
+    
     
     private String input = null;
     private String output = null;
@@ -15,7 +15,7 @@ public class MainScreenController {
     private byte countCode;
     private byte countRow;
     private byte countUnknown;
-    
+       
     public void clearFields() {
         input = "";
         output = "";

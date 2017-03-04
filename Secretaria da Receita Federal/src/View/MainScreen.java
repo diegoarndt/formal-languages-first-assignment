@@ -1,11 +1,12 @@
 package View;
 
 import Controller.MainScreenController;
-import javax.swing.UIManager;
+import Controller.TextReader;
 
 public class MainScreen extends javax.swing.JFrame {
 
     private MainScreenController controller;
+    private TextReader reader;
     
     /**
      * Creates new form MainScreen
@@ -18,6 +19,9 @@ public class MainScreen extends javax.swing.JFrame {
         
         jInputTextArea.setBorder(new NumberedBorder());
         controller = new MainScreenController();
+        
+        reader = new TextReader();
+        jInputTextArea.setText(reader.getFileContent("Test/Example 01.txt"));
     }
 
     /**
@@ -184,7 +188,7 @@ public class MainScreen extends javax.swing.JFrame {
                 new MainScreen().setVisible(true);
             }
         });
-        
+               
         /*try { 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
