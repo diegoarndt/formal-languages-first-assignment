@@ -22,7 +22,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         //TEST MODE
         reader = new TextReader();
-        jInputTextArea.setText(reader.getFileContent("test/Example 01.txt"));
+        jInputTextArea.setText(reader.getFileContent("test/Example 05.txt"));
     }
 
     /**

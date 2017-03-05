@@ -13,7 +13,9 @@ public class MainScreenController {
     private byte countPhone;
     private byte countCode;
     private byte countRow;
-    private byte countUnknown;
+    private boolean errorFlag;
+    private int errorRow;
+    private String errorContent;
        
     public void clearFields() {
         input = "";
@@ -37,34 +39,56 @@ public class MainScreenController {
         countCode = 0;
         countPhone = 0;
         countRow = 0;
-        countUnknown = 0;
+        errorFlag = false;
+        errorRow = 0;
+        errorContent = "";
         
         for(String str : rows) {
             countRow++;
             String split[] = str.split("\\s+");
             
             for(String expr : split){
-                if(!expr.equals("")) {
-                    if(validator.isCodAe(expr)) countCode++;
-                    else if(validator.isDate(expr)) countDate++;
-                    else if(validator.isPhone(expr)) countPhone++;
-                    else countUnknown++;
+                if(!expr.equals("") && !errorFlag) {
+                    if(Character.isDigit(expr.charAt(0))){
+                        if(validator.isCodAe(expr)) countCode++;
+                        else if(validator.isDate(expr)) countDate++;
+                        else{
+                            errorFlag = true;
+                            errorRow = countRow;
+                            errorContent = "data ou código de atividade econômica inválido: "+expr;
+                        }
+                    }
+                    else if(expr.charAt(0) == '(')
+                        if(validator.isPhone(expr)) countPhone++;
+                        else{
+                            errorFlag = true;
+                            errorRow = countRow;
+                            errorContent = "telefone inválido: "+expr;
+                        }
+                    else{
+                        errorFlag = true;
+                        errorRow = countRow;
+                        errorContent = "símbolos inválidos: "+expr;
+                    }
                 }
             }
-        }              
-        generateOutput();
-        System.out.println(countRow);
+        }
+        generateOutput(errorFlag);
     }
     
-    private void generateOutput() {
+    private void generateOutput(boolean errorFlag) {
         if(!this.input.isEmpty()){
-            StringBuilder sb = new StringBuilder();
-            sb.append("dados analisados\n");
-            sb.append(String.format("telefones:\t%d\n", countPhone));
-            sb.append(String.format("datas:\t%d\n", countDate));
-            sb.append(String.format("códigos:\t%d", countCode));
+            if(errorFlag){
+                output = "erro na linha "+errorRow+" - "+errorContent;
+            }else{
+                StringBuilder sb = new StringBuilder();
+                sb.append("dados analisados\n");
+                sb.append(String.format("telefones:\t%d\n", countPhone));
+                sb.append(String.format("datas:\t%d\n", countDate));
+                sb.append(String.format("códigos:\t%d", countCode));
 
-            output = sb.toString();
+                output = sb.toString();
+            }
         }
     }
 }
