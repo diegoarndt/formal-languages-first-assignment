@@ -6,7 +6,6 @@ public class MainScreenController {
     
     private IDataValidator validator = new DataValidatorFromFile();
     
-    
     private String input = null;
     private String output = null;
     

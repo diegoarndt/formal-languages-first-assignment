@@ -22,7 +22,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         //TEST MODE
         reader = new TextReader();
-        jInputTextArea.setText(reader.getFileContent("test/Example 02.txt"));
+        jInputTextArea.setText(reader.getFileContent("test/Example 01.txt"));
     }
 
     /**
@@ -142,8 +142,8 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnAnalyzeActionPerformed
 
     private void jBtnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearActionPerformed
-        jOutputTextArea.setText("");
         jInputTextArea.setText("");
+        jOutputTextArea.setText("");
         jInputTextArea.requestFocusInWindow();
         
         controller.clearFields();
