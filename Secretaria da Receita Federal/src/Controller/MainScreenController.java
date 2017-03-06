@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class MainScreenController {
     
-    private IDataValidator validator = new DataValidatorFromFile();
+    private final IDataValidator validator = new DataValidatorFromFile();
     
     private String input = null;
     private String output = null;
@@ -45,9 +45,9 @@ public class MainScreenController {
         
         for(String str : rows) {
             countRow++;
-            String split[] = str.split("\\s+");
+            String expressions[] = str.split("\\s+");
             
-            for(String expr : split){
+            for(String expr : expressions){
                 if(!expr.equals("") && !errorFlag) {
                     if(Character.isDigit(expr.charAt(0))){
                         if(validator.isCodAe(expr)) countCode++;
@@ -57,15 +57,14 @@ public class MainScreenController {
                             errorRow = countRow;
                             errorContent = "data ou código de atividade econômica inválido: "+expr;
                         }
-                    }
-                    else if(expr.charAt(0) == '(')
+                    }else if(expr.charAt(0) == '('){
                         if(validator.isPhone(expr)) countPhone++;
                         else{
                             errorFlag = true;
                             errorRow = countRow;
                             errorContent = "telefone inválido: "+expr;
                         }
-                    else{
+                    }else{
                         errorFlag = true;
                         errorRow = countRow;
                         errorContent = "símbolos inválidos: "+expr;
