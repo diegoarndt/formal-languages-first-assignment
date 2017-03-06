@@ -28,7 +28,7 @@ public class MainScreenController {
     
     public void setInput(String input) {
         if(input.isEmpty())
-            JOptionPane.showMessageDialog(null, "Please enter a value in order to analyse the data.");
+            JOptionPane.showMessageDialog(null, "Favor inserir os valores a serem analisados.", "Nenhum dado informado", 2);
         this.input = input;
     }
     
