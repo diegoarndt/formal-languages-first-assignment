@@ -132,7 +132,7 @@
     <Component class="javax.swing.JButton" name="jBtnAnalyze">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/analyzeIcon.png"/>
+          <Image iconType="3" name="/view/analyzeIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Analisar"/>
       </Properties>
@@ -143,7 +143,7 @@
     <Component class="javax.swing.JButton" name="jBtnClear">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/clearIcon.png"/>
+          <Image iconType="3" name="/view/clearIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>
@@ -154,7 +154,7 @@
     <Component class="javax.swing.JButton" name="jBtnSquad">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/View/squadIcon.png"/>
+          <Image iconType="3" name="/view/squadIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Equipe"/>
       </Properties>

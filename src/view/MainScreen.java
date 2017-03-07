@@ -1,14 +1,16 @@
-package View;
+package view;
 
-import Controller.MainScreenController;
-import Controller.TextReader;
+import controller.MainScreenController;
+import utils.TextFilesHelper;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import utils.AppConfiguration;
 
 public class MainScreen extends javax.swing.JFrame {
 
     private MainScreenController controller;
-    private TextReader reader;
+    private TextFilesHelper reader;
     private boolean testModeOn;
     
     /**
@@ -20,19 +22,23 @@ public class MainScreen extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        jScrollPane2.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        
         jInputTextArea.setBorder(new NumberedBorder());
         controller = new MainScreenController();
         
+        AppConfiguration.init();
+        
         //TEST MODE
-        testModeOn = true;
-        if(testModeOn){
-            String[] list = {"None","Example 01", "Example 02", "Example 03", "Example 04", "Example 05"};
-            JComboBox jcb = new JComboBox(list);
+        if(AppConfiguration.getBoolean("test")){
+            reader = new TextFilesHelper();
+            
+            JComboBox jcb = new JComboBox(reader.getFileNames());
             JOptionPane.showMessageDialog( null, jcb, "Which file would you like to use as a test?", JOptionPane.QUESTION_MESSAGE);
             String selectedItem = (String) jcb.getSelectedItem();
             
             if(!selectedItem.equals("None")){
-                reader = new TextReader();
                 jInputTextArea.setText(reader.getFileContent("test/"+selectedItem+".txt"));
             }
         }
@@ -90,7 +96,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
         );
 
-        jBtnAnalyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/analyzeIcon.png"))); // NOI18N
+        jBtnAnalyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/analyzeIcon.png"))); // NOI18N
         jBtnAnalyze.setText("Analisar");
         jBtnAnalyze.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +104,7 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jBtnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/clearIcon.png"))); // NOI18N
+        jBtnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/clearIcon.png"))); // NOI18N
         jBtnClear.setText("Limpar");
         jBtnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +112,7 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jBtnSquad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/squadIcon.png"))); // NOI18N
+        jBtnSquad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/squadIcon.png"))); // NOI18N
         jBtnSquad.setText("Equipe");
         jBtnSquad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,41 +179,11 @@ public class MainScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainScreen().setVisible(true);
             }
         });
-               
-        /*try { 
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

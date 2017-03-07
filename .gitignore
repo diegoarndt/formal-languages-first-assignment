@@ -4,3 +4,5 @@ build/
 build.xml
 
 nbproject/
+/Secretaria da Receita Federal/dist/
+/dist/
