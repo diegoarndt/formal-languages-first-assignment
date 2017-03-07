@@ -2,11 +2,14 @@ package View;
 
 import Controller.MainScreenController;
 import Controller.TextReader;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class MainScreen extends javax.swing.JFrame {
 
     private MainScreenController controller;
     private TextReader reader;
+    private boolean testModeOn;
     
     /**
      * Creates new form MainScreen
@@ -21,8 +24,18 @@ public class MainScreen extends javax.swing.JFrame {
         controller = new MainScreenController();
         
         //TEST MODE
-        reader = new TextReader();
-        jInputTextArea.setText(reader.getFileContent("test/Example 05.txt"));
+        testModeOn = true;
+        if(testModeOn){
+            String[] list = {"None","Example 01", "Example 02", "Example 03", "Example 04", "Example 05"};
+            JComboBox jcb = new JComboBox(list);
+            JOptionPane.showMessageDialog( null, jcb, "Which file would you like to use as a test?", JOptionPane.QUESTION_MESSAGE);
+            String selectedItem = (String) jcb.getSelectedItem();
+            
+            if(!selectedItem.equals("None")){
+                reader = new TextReader();
+                jInputTextArea.setText(reader.getFileContent("test/"+selectedItem+".txt"));
+            }
+        }
     }
 
     /**
