@@ -1,3 +1,6 @@
-/Secretaria da Receita Federal/nbproject/private/
-/Secretaria da Receita Federal/build/
 *.jar
+
+build/
+build.xml
+
+nbproject/
